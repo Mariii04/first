@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#dcd6ff">
+  <title>Un mini detallin para ti 💙</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Trebuchet MS", sans-serif;
+      background:
+  radial-gradient(ellipse at 20% 20%, #176bff 0%, transparent 45%),
+  radial-gradient(ellipse at 80% 80%, #7000ff 0%, transparent 45%),
+  linear-gradient(135deg, #020b35, #003bce, #00bfff);
+      color: #e91e6c;
+      overflow-x: hidden;
+      text-align: center;
+    }
+
+    .app {
+  width: calc(100% - 28px);
+  max-width: 440px;
+  margin: 0 auto;
+  padding: 24px 0;
+  position: relative;
+  z-index: 1;
+}
+
+    .panel {
+  width: 100%;
+  padding: 25px 18px;
+  border-radius: 28px;
+
+  /* Recuadro morado */
+  background: linear-gradient(
+    145deg,
+    rgba(100, 45, 190, 0.94),
+    rgba(65, 25, 145, 0.96),
+    rgba(35, 20, 105, 0.96)
+  );
+
+  /* Borde y brillo */
+  border: 2px solid #bd8cff;
+
+  box-shadow:
+    0 0 12px #a855f7,
+    0 0 28px #7c3aed,
+    0 0 45px rgba(0, 191, 255, 0.35);
+}
+    .eyebrow {
+      font-size: 13px;
+      letter-spacing: 2px;
+      color: #d4d4d4;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: clamp(28px, 8vw, 38px);
+      margin: 12px 0;
+      color: #5d69b6;
+    }
+
+    .subtitle {
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    .character {
+  margin: 18px auto;
+  width: min(100%, 220px);
+  height: auto;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: float 3s ease-in-out infinite;
+}
+
+.character img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 0 12px #00cfff);
+}
+
+    .fallback {
+      font-size: 115px;
+    }
+
+    .hint {
+      font-size: 13px;
+      color: #8e82af;
+      margin: 12px 0 20px;
+    }
+
+    button {
+      border: none;
+      border-radius: 22px;
+      padding: 15px 23px;
+      font-family: inherit;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px #8172c63b;
+    }
+
+    .primary {
+      color: rgb(247, 239, 246);
+      background: linear-gradient(100deg, #00399b, #723ada);
+      width: 100%;
+    }
+
+    .secondary {
+      margin-top: 14px;
+      color: #7162a5;
+      background: #eee8ff;
+      width: 100%;
+    }
+
+    .letter {
+      margin-top: 18px;
+      padding: 22px 18px;
+      background: #fffaff;
+      border: 2px dashed #d9b9ec;
+      border-radius: 23px;
+      line-height: 1.8;
+      text-align: left;
+      animation: appear 0.65s ease both;
+    }
+
+    .letter h2 {
+      color: #7d76c6;
+      text-align: center;
+    }
+
+    .letter p {
+      white-space: pre-line;
+    }
+
+    .signature {
+      text-align: center;
+      color: #9b76bc;
+      font-weight: bold;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .footer {
+      font-size: 13px;
+      color: #6d50c4;
+      margin-top: 22px;
+    }
+
+    .heart {
+      position: fixed;
+      bottom: -30px;
+      pointer-events: none;
+      z-index: 0;
+      animation: rise 5s linear forwards;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(-2deg); }
+      50% { transform: translateY(-10px) rotate(2deg); }
+    }
+
+    @keyframes appear {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes rise {
+      to {
+        transform: translateY(-110vh) rotate(35deg);
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .panel { padding: 23px 15px; }
+      .character { width: 180px; height: 180px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+      }
+    }
+    /* Adaptación para celulares */
+@media (max-width: 480px) {
+  .app {
+    width: calc(100% - 24px);
+    padding: 16px 0 24px;
+  }
+
+  .panel {
+    padding: 22px 15px;
+    border-radius: 22px;
+  }
+
+  h1 {
+    font-size: clamp(25px, 7vw, 32px);
+  }
+
+  .subtitle {
+    font-size: 15px;
+  }
+
+  .character {
+    width: min(65vw, 200px);
+  }
+
+  .primary,
+  .secondary {
+    width: 100%;
+    min-height: 48px;
+  }
+
+  .letter {
+    padding: 18px 14px;
+    overflow-wrap: anywhere;
+    font-size: 15px;
+  }
+
+  .letter p {
+    white-space: pre-line;
+    overflow-wrap: anywhere;
+  }
+
+  .heart {
+    max-width: 100vw;
+  }
+}
+
+@media (max-width: 360px) {
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 1px;
+  }
+
+  .panel {
+    padding: 20px 12px;
+  }
+
+  .letter {
+    padding: 16px 11px;
+    font-size: 14px;
+  }
+}
+  </style>
+</head>
+
+<body>
+  <main class="app">
+    <section class="panel" id="inicio">
+      <div class="eyebrow">Feliz cumpleeeeee♡</div>
+
+      <h1> Wenas wenaaaaasss!</h1>
+
+      <p class="subtitle">
+        Un mensaje de stich<br>
+        
+      </p>
+
+      <div class="character">
+        <img
+          src="stitch.png"
+          alt="Stitch"
+          onerror="this.style.display='none';
+          document.getElementById('fallback').classList.remove('hidden');"
+        >
+        <span id="fallback" class="fallback hidden">💙</span>
+      </div>
+
+      <p class="hint">Leeeeelo .</p>
+
+      <button class="primary" id="abrir">
+        Que diceee stich
+      </button>
+
+      <div id="carta" class="letter hidden">
+        <h2>Para mi primer amigo </h2>
+
+        <p id="mensaje"></p>
+
+        <p class="signature">
+          Que cumplas todos tus deseos isisisis
+        </p>
+
+        <button class="secondary" id="volver">
+          Arriba
+        </button>
+      </div>
+    </section>
+
+    <p class="footer">
+    
+    </p>
+  </main>
+
+  <script>
+    // Puedes cambiar este mensaje por el tuyo.
+    const mensajeEspecial = `Hellouuuu cumpleañero. 💙
+
+Feliz cumpleaños a mi amiguis <3 , te deseo lo mejor hoy en tu dia, que todo lo que quieras
+se te cumpla. 
+
+Eres una gran persona!!. Te considero una persona muy valiosa para mi eres mi mejor amigo, , mi primer amigo del work 
+y de la vida, que no llevo mucho tiempo de conocerte pero el poco tiempo que te conozco te has covertido en una persona muy 
+importante para mi sisisis, alguien con quien puedo ser yo y que para encontrar una amistad como la tuya seria imposible porque
+eres unico y tu amistad es algo que tiene un valor muy alto para mi <3. 
+
+Gracias por tus enseñansas profesionales y que aceptaste ser mi amigo y hasta el dia de hoy no lo has dejado de ser...
+Yo te considero alguien super super especial para mi<3. Tus bromas, juegos, consejos, acompañamiento tienen un gran valor que no 
+se puede comparar con nadie ni nada. 
+
+Eres maravilloso, genial, especial, y super super importante para mi y todos los que te rodean. 
+Que la vida te regale muchas cosas bonitas, sueños cumplidos y muchos stichssssss. 
+
+Gracias por tu tiempo que me brindas, me hiciste reir una vez despues de no se cuantos años y toda la vida estare agradecida contigo por 
+hacerme reir ratitos y saber que es una amistad verdadera y sincera. Te lo vuelvo a repetir vales mil, vales oro!!!! 
+Tu amistad es de lo mas caro en este mundo y me siento afortunada de ser tu amiga, aunque yo te considere para mi mejor amigo espero no te cause algun tema. 
+
+Gracias por hacerme conocer que es un amigo, que es contar con una amistad, que es reir, lograste algo muy importante en alguien .... Hiciste que amara  mi carrera despues de 4 años que 
+no la queria hasta marzo 2026....., gracias a ti ahora se mas menos a que a dedicarme porque me gusta de todo jijij , gracias por tu guia. 
+
+Espero seguir contando con tus locuras, recuerda que tienes una amiga medio loca <3. 
+
+Te deseo muy feliz cumpleaños, que te la pases genial y mis mejores desos ijiji 
+
+Este es un mensaje me falta algoooo sisisis........`;
+
+    const inicio = document.getElementById("inicio");
+    const carta = document.getElementById("carta");
+    const mensaje = document.getElementById("mensaje");
+
+    document.getElementById("abrir").addEventListener("click", () => {
+      mensaje.textContent = mensajeEspecial;
+      carta.classList.remove("hidden");
+      document.getElementById("abrir").classList.add("hidden");
+      crearCorazones(18);
+
+      carta.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest"
+      });
+    });
+
+    document.getElementById("volver").addEventListener("click", () => {
+      carta.classList.add("hidden");
+      document.getElementById("abrir").classList.remove("hidden");
+      inicio.scrollIntoView({ behavior: "smooth" });
+    });
+
+    function crearCorazones(cantidad) {
+      const simbolos = ["", "💙", "", "✨", "💜"];
+
+      for (let i = 0; i < cantidad; i++) {
+        const corazon = document.createElement("span");
+        corazon.className = "heart";
+        corazon.textContent =
+          simbolos[Math.floor(Math.random() * simbolos.length)];
+
+        corazon.style.left = Math.random() * 100 + "vw";
+        corazon.style.animationDelay = Math.random() * 1.5 + "s";
+        corazon.style.fontSize = (16 + Math.random() * 20) + "px";
+
+        document.body.appendChild(corazon);
+
+        corazon.addEventListener("animationend", () => {
+          corazon.remove();
+        });
+      }
+    }
+  </script>
+</body>
+</html>
